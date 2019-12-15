@@ -71,3 +71,17 @@ h2 {
   margin: 0.83em;
   margin-top: 0.4em;
 }
+
+input[type="number"] {
+  height: 32px;
+  color: rgba(0, 0, 0, 0.65);
+  padding: 4px 11px;
+  font-size: 14px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  line-height: 1.5;
+  margin: 12px;
+}
+.MuiSlider-root {
+  margin: 16px;
+}
