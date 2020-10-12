@@ -8,29 +8,27 @@ function BarPlot({ finalCount, initialCount, time }) {
   const [matchCount, setCount] = useState(initialCount);
   useEffect(() => {
     setInterval(() => {
-      const increment = a => (a <= finalCount - 1 ? a + 1 : a);
+      const increment = (a) => (a <= finalCount - 1 ? a + 1 : a);
       setCount(increment);
     }, time);
   }, [finalCount, time]);
-  const rows = BATTING_AVERAGES[matchCount.toString()].map(a => ({
+  const rows = BATTING_AVERAGES[matchCount.toString()].map((a) => ({
     ...a,
     image:
       a.country.split("/").length > 1
         ? gradients[a.country.split("/")[1]]
-        : gradients[a.country]
+        : gradients[a.country],
   }));
 
   let height = 0;
   const transitions = useTransition(
-    rows
-      .slice(0, 8)
-      .map(data => ({ ...data, y: (height += data.height) - data.height })),
-    d => d.playerId,
+    rows.map((data) => ({ ...data, y: (height += data.height) - data.height })),
+    (d) => d.playerId,
     {
       from: { height: 0, opacity: 0 },
       leave: { height: 0, opacity: 0 },
       enter: ({ y, height }) => ({ y, height, opacity: 1 }),
-      update: ({ y, height }) => ({ y, height })
+      update: ({ y, height }) => ({ y, height }),
     }
   );
   const range = rows[0].average - rows[rows.length - 1].average;
@@ -45,8 +43,8 @@ function BarPlot({ finalCount, initialCount, time }) {
               className="card"
               style={{
                 zIndex: rows.length - index,
-                transform: y.interpolate(y => `translate3d(0,${y}px,0)`),
-                ...rest
+                transform: y.interpolate((y) => `translate3d(0,${y}px,0)`),
+                ...rest,
               }}
             >
               <div
@@ -56,19 +54,23 @@ function BarPlot({ finalCount, initialCount, time }) {
                     range < 20
                       ? Number(item.average) > 100
                         ? `${100 + (Number(item.average) - 100) * 0.3}%`
-                        : `${Number(item.average) +
-                            (Number(item.average) - 50) * 6}%`
+                        : `${
+                            Number(item.average) +
+                            (Number(item.average) - 50) * 6
+                          }%`
                       : Number(item.average) > 100
                       ? `${100 + (Number(item.average) - 100) * 0.3}%`
                       : `${Number(item.average)}%`
-                  }`
+                  }`,
                 }}
               >
                 <div
                   className="details"
                   style={{ backgroundImage: item.image }}
                 >
-                  <span>{`${item.playerName} (${item.average})`}</span>
+                  <span>{`${item.playerName} (`}</span>
+                  <animated.span>{item.average}</animated.span>
+                  <span>)</span>
                 </div>
               </div>
             </animated.div>

@@ -14,8 +14,8 @@ function secondsText(value) {
 
 function App() {
   const [counter, setCounter] = useState(0);
-  const [matches, setMatches] = React.useState([1, 68]);
-  const [time, setTime] = React.useState(2000);
+  const [matches, setMatches] = React.useState([50, 73]);
+  const [time, setTime] = React.useState(900);
   const [initialCount, finalCount] = matches;
 
   const handleChange = (event, newValue) => {
