@@ -14,7 +14,7 @@ function secondsText(value) {
 
 function App() {
   const [counter, setCounter] = useState(0);
-  const [matches, setMatches] = React.useState([50, 73]);
+  const [matches, setMatches] = React.useState([1, 73]);
   const [time, setTime] = React.useState(900);
   const [initialCount, finalCount] = matches;
 
@@ -34,7 +34,7 @@ function App() {
           max={4000}
           value={time}
           orientation="vertical"
-          valueLabelDisplay="auto"
+          valueLabelDisplay="on"
           onChange={handleTimeChange}
           getAriaValueText={secondsText}
           aria-labelledby="vertical-slider"
@@ -46,8 +46,8 @@ function App() {
           orientation="vertical"
           valueLabelDisplay="on"
           onChange={handleChange}
-          aria-labelledby="range-slider"
           getAriaValueText={valuetext}
+          aria-labelledby="range-slider"
         />
       </div>
       <div style={{ width: "100%" }}>
